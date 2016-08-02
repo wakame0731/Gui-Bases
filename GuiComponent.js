@@ -201,6 +201,35 @@ var GuiComponent={
 	},
 	createMCButton:function(text,runFunction){
 		try{
+			var byte=NinePatchChunk.createSimpleNinePatchChunk(10,10,10,10);
+			// var button_On_Drawable=new NinePatchDrawable(imageBuffer["mcButton_on_Bitmap"],byte,new Rect(),null);
+			// var button_Off_Drawable=new NinePatchDrawable(imageBuffer["mcButton_off_Bitmap"],byte,new Rect(),null);
+			var button_On_Drawable=new BitmapDrawable(imageBuffer["mcButton_on_Bitmap"]);
+			var button_Off_Drawable=new BitmapDrawable(imageBuffer["mcButton_off_Bitmap"]);
+			var button=new Button(activity);
+			var buttonParams=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+			//var buttonParams=new ViewGroup.LayoutParams(200*mcpe.density,20*mcpe.density);
+			var buttonDrawable=new StateListDrawable();
+			var buttonColor=new ColorStateList([[R.attr.state_pressed,R.attr.state_enabled],[R.attr.state_enabled]],[Color.parseColor("#cccc00"),Color.parseColor("#cccccc")]);
+			buttonDrawable.addState([R.attr.state_pressed,R.attr.state_enabled],button_On_Drawable);
+			buttonDrawable.addState([R.attr.state_enabled],button_Off_Drawable);
+			button.setLayoutParams(buttonParams);
+			button.setText(text);
+			button.setBackground(buttonDrawable);
+			button.setShadowLayer(1,2,2,Color.parseColor("#222222"));
+			button.setTextColor(buttonColor);
+			button.setOnTouchListener(new OnTouchListener({onTouch:function(view,event){
+				var actionId=event.getAction();
+				if(actionId==MotionEvent.ACTION_UP){
+					var x=event.getX();
+					var y=event.getY();
+					if(!(x<0||y<0||x>view.getWidth()||y>view.getHeight())){
+						runFunction.run();
+					}
+				}
+				return false;
+			}}));
+			button.setAllCaps(false);
 			return button;
 		}catch(err){print(err);}
 		return new Button(activity);
