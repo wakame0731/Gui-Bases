@@ -9,3 +9,13 @@ function getDisplayMetrics(){
 	activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 	return displayMetrics;
 }
+
+function getRandomString(len){
+	var seed="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	var seedLength=seed.length;
+	var randomString="";
+	for(var i=len;i>0;i--){
+		randomString+=seed[Math.floor(Math.random()*seedLength)];
+	}
+	return randomString;
+}

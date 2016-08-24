@@ -67,6 +67,8 @@ var TGALoader=net.zhuoweizhang.mcpelauncher.texture.tga.TGALoader;
 var ScriptManager=net.zhuoweizhang.mcpelauncher.ScriptManager;
 var ScriptableObject=org.mozilla.javascript.ScriptableObject;
 
+var jString=java.lang.String;
+
 var ByteBuffer=java.nio.ByteBuffer;
 var ByteOrder=java.nio.ByteOrder;
 
