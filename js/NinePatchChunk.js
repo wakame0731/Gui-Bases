@@ -1,5 +1,6 @@
 var NinePatchChunk={
 	createSimpleNinePatchChunk:function(topLeft,topRight,leftTop,leftBottom){
+		var density=mcpe.density;
 		var byteBuffer=ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
 		byteBuffer.put(0x01);
 		byteBuffer.put(0x02);
@@ -12,10 +13,10 @@ var NinePatchChunk={
 		byteBuffer.putInt(0);
 		byteBuffer.putInt(0);
 		byteBuffer.putInt(0);
-		byteBuffer.putInt(topLeft);
-		byteBuffer.putInt(topRight+1);
+		byteBuffer.putInt(topLeft*density);
+		byteBuffer.putInt((topRight+1)*density);
 		byteBuffer.putInt(leftTop*density);
-		byteBuffer.putInt(leftBottom+1);
+		byteBuffer.putInt((leftBottom+1)*density);
 		byteBuffer.putInt(1);
 		byteBuffer.putInt(1);
 		byteBuffer.putInt(1);
@@ -35,15 +36,15 @@ var NinePatchChunk={
 		byteBuffer.put(0x09);
 		byteBuffer.putInt(0);
 		byteBuffer.putInt(0);
-		byteBuffer.putInt(bottomLeft);
-		byteBuffer.putInt(bottomRight);
-		byteBuffer.putInt(rightTop);
-		byteBuffer.putInt(rightBottom);
+		byteBuffer.putInt(bottomLeft*density);
+		byteBuffer.putInt(bottomRight*density);
+		byteBuffer.putInt(rightTop*density);
+		byteBuffer.putInt(rightBottom*density);
 		byteBuffer.putInt(0);
-		byteBuffer.putInt(topLeft);
-		byteBuffer.putInt(topRight+1);
-		byteBuffer.putInt(leftTop);
-		byteBuffer.putInt(leftBottom+1);
+		byteBuffer.putInt(topLeft*density);
+		byteBuffer.putInt((topRight+1)*density);
+		byteBuffer.putInt(leftTop*density);
+		byteBuffer.putInt((leftBottom+1)*density);
 		byteBuffer.putInt(1);
 		byteBuffer.putInt(1);
 		byteBuffer.putInt(1);
